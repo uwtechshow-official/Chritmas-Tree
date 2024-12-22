@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Christmas Tree</title>
+  <script src="script.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+/* General Tree Styling */
+.tree-layer {
+  position: relative;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Lights */
+.lights {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: blink 1.5s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+  </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+  <div id="tree-container" class="relative">
+    <!-- Star -->
+    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-yellow-400 rounded-full animate-pulse"></div>
+
+    <!-- Tree Layers -->
+    <div class="tree-layer w-20 h-20 bg-green-600 mx-auto mt-4"></div>
+    <div class="tree-layer w-28 h-28 bg-green-700 mx-auto mt-4"></div>
+    <div class="tree-layer w-36 h-36 bg-green-800 mx-auto mt-4"></div>
+    <div class="tree-layer w-44 h-44 bg-green-900 mx-auto mt-4"></div>
+
+    <!-- Tree Trunk -->
+    <div class="w-12 h-20 bg-brown-600 mx-auto mt-2 rounded"></div>
+
+    <!-- Lights -->
+    <div class="lights">
+      <div class="light bg-red-500"></div>
+      <div class="light bg-yellow-300"></div>
+      <div class="light bg-blue-500"></div>
+      <div class="light bg-pink-500"></div>
+      <div class="light bg-green-400"></div>
+    </div>
+  </div>
+  <script>
+// Add blinking lights animation dynamically
+const lights = document.querySelectorAll(".light");
+
+lights.forEach((light, index) => {
+  light.style.animationDelay = `${index * 0.2}s`;
+});
+  </script>
+</body>
+</html>
